@@ -1,0 +1,15 @@
+{% if slides %}
+<div class="hero">
+{% for slide in slides %}
+	<div class="hero-slide row align-middle align-center text-center" style="background-image:url('{{ slide.image }}');">
+		{% if slide.title or slide.body %}
+		<div class="column small-12">
+			{% if slide.title %}<h1>{{ slide.title }}</h1>{% endif %}
+			{% if slide.body %}<div class="body">{{ slide.body|raw }}</div>{% endif %}
+		</div>
+		{% endif %}
+	</div>
+{% endfor %}
+	<a href="#" class="arrow" data-scroll></a>
+</div>
+{% endif %}

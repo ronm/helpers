@@ -1,0 +1,39 @@
+<?php
+
+function helpers_theme($existing, $type, $theme, $path) {
+	return array(
+    	'hero' => array(
+			'template' => 'hero',
+			'path' => drupal_get_path('module', 'helpers') . '/templates',
+			'variables' => array('slides' => NULL,),
+		),
+		'linkedlogo' => array(
+			'template' => 'linkedlogo',
+			'path' => drupal_get_path('module', 'helpers') . '/templates',
+			'variables' => array('content' => NULL,),
+		),
+	);
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function helpers_preprocess_block(&$variables) {
+	if ($variables['base_plugin_id'] == 'branding_block' ) {
+		$variables['site_logo'] = '';
+		if ($variables['content']['site_logo']['#access'] && $variables['content']['site_logo']['#markup']) {
+			$variables['site_logo'] = $variables['content']['site_logo']['#markup'];
+		}
+		
+		$variables['site_name'] = '';
+		if ($variables['content']['site_name']['#access'] && $variables['content']['site_name']['#markup']) {
+			$variables['site_name'] = $variables['content']['site_name']['#markup'];
+		}
+		
+		$variables['site_slogan'] = '';
+		if ($variables['content']['site_slogan']['#access'] && $variables['content']['site_slogan']['#markup']) {
+			$variables['site_slogan']['#markup'] = $variables['content']['site_slogan']['#markup'];
+		}
+	}
+}

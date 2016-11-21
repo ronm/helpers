@@ -1,0 +1,5 @@
+{
+    "name": "drupal/helpers",
+    "description": "Basic composer file",
+    "type": "drupal-module",
+}
